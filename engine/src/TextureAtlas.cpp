@@ -10,7 +10,7 @@ TextureAtlas::TextureAtlas(Texture* texture, uint32_t w, uint32_t h)
 {
 }
 
-glm::vec2 TextureAtlas::uvMin(uint32_t x, uint32_t y, uint32_t w, uint32_t h) const
+glm::vec2 TextureAtlas::uvMin(uint32_t x, uint32_t y) const
 {
     return {x * m_invW, y * m_invH};
 }

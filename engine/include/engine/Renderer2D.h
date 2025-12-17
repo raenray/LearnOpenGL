@@ -24,7 +24,7 @@ public:
 
     void begin(const Camera2D& camera);
     void drawQuad(const glm::vec2& pos, const glm::vec2& size, const glm::vec4& color = {1, 1, 1, 1}, Texture* texture = nullptr);
-    void drawSprite(const glm::vec2& pos, const glm::vec2& size, const Sprite& sprite, const glm::vec4& tint = {1, 1, 1, 1});
+    void drawSprite(const glm::vec2& pos, const glm::vec2& size, const Sprite& sprite, const glm::vec4& color = {1, 1, 1, 1});
 
     void end();
     void flush();

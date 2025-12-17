@@ -170,9 +170,9 @@ void Renderer2D::drawQuad(const glm::vec2& pos, const glm::vec2& size, const glm
     m_indexCount += 6;
 }
 
-void Renderer2D::drawSprite(const glm::vec2& pos, const glm::vec2& size, const Sprite& sprite, const glm::vec4& tint)
+void Renderer2D::drawSprite(const glm::vec2& pos, const glm::vec2& size, const Sprite& sprite, const glm::vec4& color)
 {
-    drawQuadInternal(pos, size, sprite.uvMin, sprite.uvMax, tint, sprite.texture);
+    drawQuadInternal(pos, size, sprite.uvMin, sprite.uvMax, color, sprite.texture);
 }
 
 void Renderer2D::end()

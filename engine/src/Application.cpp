@@ -17,13 +17,12 @@
 
 #include <iostream>
 
-
 namespace engine
 {
 
 Application::Application()
 {
-    m_window = std::make_unique<Window>(1280, 720, "LearnOpenGL Engine");
+    m_window = std::make_unique<Window>(800, 800, "LearnOpenGL Engine");
 }
 
 Application::~Application() = default;
@@ -39,25 +38,27 @@ void Application::run()
         shader = std::make_unique<Shader>(ENGINE_ASSET_DIR "shaders/renderer2d.vert", ENGINE_ASSET_DIR "shaders/renderer2d.frag");
         texture1 = std::make_unique<Texture>(ENGINE_ASSET_DIR "textures/test1.png");
         texture2 = std::make_unique<Texture>(ENGINE_ASSET_DIR "textures/test2.png");
-    }catch(std::exception &e)
+    }
+    catch (std::exception& e)
     {
         std::cout << "" << e.what() << std::endl;
+        return;
     }
-    
-    Texture atlasTex(ENGINE_ASSET_DIR"textures/atlas.png");
-    // Texture atlasTex(ENGINE_ASSET_DIR"textures/test1.png");
-    TextureAtlas atlas(&atlasTex, 16, 16);
 
-    Sprite player {
+    // Texture atlasTex(ENGINE_ASSET_DIR"textures/atlas.png");
+    Texture atlasTex(ENGINE_ASSET_DIR "textures/test2.png");
+    TextureAtlas atlas(&atlasTex, 288, 176);
+
+    Sprite player{
         atlas.texture(),
-        atlas.uvMin(0,   0,  32, 32),
-        atlas.uvMax(0,   0,  32, 32)
+        atlas.uvMin(0, 0),
+        atlas.uvMax(0, 0, 16, 16),
     };
 
-    Sprite enemy {
+    Sprite enemy{
         atlas.texture(),
-        atlas.uvMin(32,  0,  32, 32),
-        atlas.uvMax(32,  0,  32, 32)
+        atlas.uvMin(32, 0),
+        atlas.uvMax(32, 0, 16, 16),
     };
 
     engine::Renderer2D renderer2d(*shader.get());
@@ -84,8 +85,8 @@ void Application::run()
         // renderer2d.drawQuad({0.5f, 0.5f}, {0.3f, 0.3f}, {1, 1, 1, 1}, texture1.get());
         // renderer2d.drawQuad({0.5f, -0.5f}, {0.3f, 0.3f}, {1, 1, 1, 1}, texture2.get());
 
-        renderer2d.drawSprite({0,0},   {1,1}, player);
-        renderer2d.drawSprite({0.5f,-0.5f},{1,1}, enemy);
+        renderer2d.drawSprite({-0.5f, 0.0f}, {0.5f, 0.5f}, player, {1, 0, 0, 1});
+        renderer2d.drawSprite({0.0f, -0.0f}, {0.5f, 0.5f}, enemy, {0, 0, 1, 1});
 
         renderer2d.end();
         renderer2d.flush();
