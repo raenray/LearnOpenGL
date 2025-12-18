@@ -1,7 +1,13 @@
 add_library(engine STATIC)
 
 target_sources(engine PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Application.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/core/Application.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/layer/LayerStack.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/layer/RenderLayer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ui/ImGuiLayer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/editor/EditorLayer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/renderer/Framebuffer.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Shader.cpp
@@ -14,7 +20,6 @@ target_sources(engine PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Camera2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/TextureAtlas.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ImGuiLayer.cpp
 )
 
 target_include_directories(engine PUBLIC
