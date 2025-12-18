@@ -6,6 +6,7 @@ namespace engine
 {
 
 class Window;
+class ImGuiLayer;
 
 class Application
 {
@@ -16,6 +17,7 @@ public:
 
 private:
     std::unique_ptr<Window> m_window;
+    std::unique_ptr<ImGuiLayer> imgui;
 };
 
 } // namespace engine

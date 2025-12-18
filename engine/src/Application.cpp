@@ -15,14 +15,29 @@
 #include <engine/Sprite.h>
 #include <engine/TextureAtlas.h>
 
+#include <engine/ImGuiLayer.h>
+
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
+
 #include <iostream>
 
 namespace engine
 {
 
+void draw_ui()
+{
+    ImGui::Begin("Demo");
+    ImGui::Text("Hello ImGui");
+    ImGui::End();
+}
 Application::Application()
 {
     m_window = std::make_unique<Window>(800, 800, "LearnOpenGL Engine");
+    // imgui.init(m_window->nativeHandle());
+    imgui = std::make_unique<ImGuiLayer>();
+    imgui->init(m_window->nativeHandle());
 }
 
 Application::~Application() = default;
@@ -90,6 +105,10 @@ void Application::run()
 
         renderer2d.end();
         renderer2d.flush();
+
+        imgui->beginFrame();
+        draw_ui();
+        imgui->endFrame();
 
         m_window->swapBuffers();
         m_window->pollEvents();

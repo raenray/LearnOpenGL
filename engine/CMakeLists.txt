@@ -14,6 +14,7 @@ target_sources(engine PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Camera2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/TextureAtlas.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ImGuiLayer.cpp
 )
 
 target_include_directories(engine PUBLIC
@@ -25,6 +26,7 @@ target_link_libraries(engine PUBLIC
     glad
     glm
     stb
+    imgui
 )
 
 target_compile_definitions(engine PUBLIC
