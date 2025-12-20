@@ -1,9 +1,12 @@
 #pragma once
 
 #include <cstdint>
+#include <memory>
 
 namespace engine
 {
+
+class Texture;
 
 class Framebuffer
 {
@@ -16,14 +19,15 @@ public:
 
     void resize(uint32_t width, uint32_t height);
 
-    uint32_t getColorAttachment() const { return m_colorAttachment; }
+    unsigned int getColorAttachment() const;
 
 private:
     void invalidate();
 
 private:
     uint32_t m_fbo = 0;
-    uint32_t m_colorAttachment = 0;
+    std::unique_ptr<Texture> m_colorAttachment;
+    
     uint32_t m_rbo = 0;
 
     uint32_t m_width = 0;

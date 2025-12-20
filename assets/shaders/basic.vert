@@ -1,12 +1,12 @@
 #version 330 core
 
 layout(location = 0) in vec3 aPos;
-layout(location = 1) in vec2 aUV;
+layout(location = 1) in vec3 aColor;
 
-out vec2 v_UV;
+out vec3 v_Color;
 
 void main()
 {
-    v_UV = aUV;
+    v_Color = aColor;
     gl_Position = vec4(aPos, 1.0);
 }

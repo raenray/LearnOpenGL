@@ -120,19 +120,19 @@ void ImGuiLayer::beginDockSpace()
     );
 
     // ===== 菜单栏（属于 ImGuiLayer）=====
-    if (ImGui::BeginMenuBar())
-    {
-        if (ImGui::BeginMenu("File"))
-        {
-            if (ImGui::MenuItem("Exit"))
-            {
-                // Application::close() 以后接
-            }
-            ImGui::EndMenu();
-        }
+    // if (ImGui::BeginMenuBar())
+    // {
+    //     if (ImGui::BeginMenu("File"))
+    //     {
+    //         if (ImGui::MenuItem("Exit"))
+    //         {
+    //             // Application::close() 以后接
+    //         }
+    //         ImGui::EndMenu();
+    //     }
 
-        ImGui::EndMenuBar();
-    }
+    //     ImGui::EndMenuBar();
+    // }
 
     ImGui::End();
 }

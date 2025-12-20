@@ -9,7 +9,7 @@ class Texture
 {
 public:
     explicit Texture(const std::string& path);
-    Texture(uint32_t width, uint32_t height, const void* data);
+    Texture(int width, int height, const void* data);
     ~Texture();
 
     void bind(unsigned int slot = 0) const;

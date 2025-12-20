@@ -4,6 +4,7 @@
 #include <glad/gl.h>
 
 #include <iostream>
+#include <vector>
 
 namespace engine
 {
@@ -18,7 +19,7 @@ Framebuffer::Framebuffer(uint32_t width, uint32_t height)
 Framebuffer::~Framebuffer()
 {
     glDeleteFramebuffers(1, &m_fbo);
-    glDeleteTextures(1, &m_colorAttachment);
+    // glDeleteTextures(1, &m_colorAttachment);
     glDeleteRenderbuffers(1, &m_rbo);
 }
 
@@ -27,7 +28,6 @@ void Framebuffer::invalidate()
     if (m_fbo)
     {
         glDeleteFramebuffers(1, &m_fbo);
-        glDeleteTextures(1, &m_colorAttachment);
         glDeleteRenderbuffers(1, &m_rbo);
     }
 
@@ -35,13 +35,10 @@ void Framebuffer::invalidate()
     glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
 
     // color texture
-    glGenTextures(1, &m_colorAttachment);
-    glBindTexture(GL_TEXTURE_2D, m_colorAttachment);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+    std::vector<uint32_t> data(m_width * m_height, 0xffffffff);
+    m_colorAttachment = std::make_unique<Texture>(m_width, m_height, data.data());
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_colorAttachment, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_colorAttachment->getID(), 0);
 
     // depth-stencil
     glGenRenderbuffers(1, &m_rbo);
@@ -74,6 +71,11 @@ void Framebuffer::resize(uint32_t width, uint32_t height)
     m_width = width;
     m_height = height;
     invalidate();
+}
+
+unsigned int Framebuffer::getColorAttachment() const
+{
+    return m_colorAttachment->getID();
 }
 
 } // namespace engine

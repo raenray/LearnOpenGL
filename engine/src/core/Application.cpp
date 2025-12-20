@@ -59,7 +59,6 @@ Application::~Application() = default;
 void Application::run()
 {
     float lastTime = 0.0f;
-    // while (m_running)
     while (!m_window->shouldClose())
     {
         float time = (float)glfwGetTime();

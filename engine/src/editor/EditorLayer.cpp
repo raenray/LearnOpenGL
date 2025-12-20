@@ -73,14 +73,6 @@ void EditorLayer::drawInspector()
 void EditorLayer::drawSceneView()
 {
     ImGui::Begin("Scene");
-    static bool initialized = false;
-    static Texture texture(ENGINE_ASSET_DIR "textures/test1.png");
-    if (!initialized)
-    {
-        initialized = true;
-
-    }
-
     ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
     if (m_viewportSize.x != viewportPanelSize.x || m_viewportSize.y != viewportPanelSize.y)
     {
@@ -88,10 +80,9 @@ void EditorLayer::drawSceneView()
         m_sceneFramebuffer->resize((uint32_t)m_viewportSize.x, (uint32_t)m_viewportSize.y);
     }
 
-    // uint32_t textureID = m_sceneFramebuffer->getColorAttachment();
+    uint32_t textureID = m_sceneFramebuffer->getColorAttachment();
 
-    // ImGui::Image((void*)(uintptr_t)textureID, ImVec2{m_viewportSize.x, m_viewportSize.y}, ImVec2{0, 1}, ImVec2{1, 0});
-    ImGui::Image((void*)texture.getID(), ImVec2{m_viewportSize.x, m_viewportSize.y}, ImVec2{0, 1}, ImVec2{1, 0});
+    ImGui::Image((void*)(uintptr_t)textureID, ImVec2{m_viewportSize.x, m_viewportSize.y}, ImVec2{0, 1}, ImVec2{1, 0});
     ImGui::End();
 }
 
