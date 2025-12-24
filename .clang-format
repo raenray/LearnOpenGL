@@ -11,3 +11,6 @@ Cpp11BracedListStyle: true
 AllowAllArgumentsOnNextLine: false
 AllowAllConstructorInitializersOnNextLine: false
 SortIncludes: false
+
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
