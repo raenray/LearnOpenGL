@@ -14,14 +14,14 @@ public:
     {
     }
 
-    float GetX() const { return m_MouseX; }
-    float GetY() const { return m_MouseY; }
+    float getX() const { return m_MouseX; }
+    float getY() const { return m_MouseY; }
 
-    static EventType    GetStaticType() { return EventType::MouseMoved; }
-    virtual EventType   GetEventType() const override { return GetStaticType(); }
-    virtual const char* GetName() const override { return "MouseMoved"; }
+    static EventType    getStaticType() { return EventType::MouseMoved; }
+    virtual EventType   getEventType() const override { return getStaticType(); }
+    virtual const char* getName() const override { return "MouseMoved"; }
 
-    virtual int GetCategoryFlags() const override { return EventCategoryInput | EventCategoryMouse; }
+    virtual int getCategoryFlags() const override { return EventCategoryInput | EventCategoryMouse; }
 
 private:
     float m_MouseX, m_MouseY;
@@ -31,21 +31,21 @@ class MouseScrolledEvent : public Event
 {
 public:
     MouseScrolledEvent(const float xOffset, const float yOffset)
-        : m_XOffset(xOffset)
-        , m_YOffset(yOffset)
+        : m_xOffset(xOffset)
+        , m_yOffset(yOffset)
     {
     }
-    float GetXOffset() const { return m_XOffset; }
-    float GetYOffset() const { return m_YOffset; }
+    float getXOffset() const { return m_xOffset; }
+    float getYOffset() const { return m_yOffset; }
 
-    static EventType    GetStaticType() { return EventType::MouseScrolled; }
-    virtual EventType   GetEventType() const override { return GetStaticType(); }
-    virtual const char* GetName() const override { return "MouseScrolled"; }
+    static EventType    getStaticType() { return EventType::MouseScrolled; }
+    virtual EventType   getEventType() const override { return getStaticType(); }
+    virtual const char* getName() const override { return "MouseScrolled"; }
 
-    virtual int GetCategoryFlags() const override { return EventCategoryInput | EventCategoryMouse; }
+    virtual int getCategoryFlags() const override { return EventCategoryInput | EventCategoryMouse; }
 
 private:
-    float m_XOffset, m_YOffset;
+    float m_xOffset, m_yOffset;
 };
 
 class MouseButtonPressedEvent : public Event
@@ -56,13 +56,13 @@ public:
     {
     }
 
-    int GetMouseButton() const { return m_Button; }
+    int getMouseButton() const { return m_Button; }
 
-    static EventType    GetStaticType() { return EventType::MouseButtonPressed; }
-    virtual EventType   GetEventType() const override { return GetStaticType(); }
-    virtual const char* GetName() const override { return "MouseButtonPressed"; }
+    static EventType    getStaticType() { return EventType::MouseButtonPressed; }
+    virtual EventType   getEventType() const override { return getStaticType(); }
+    virtual const char* getName() const override { return "MouseButtonPressed"; }
 
-    virtual int GetCategoryFlags() const override { return EventCategoryInput | EventCategoryMouse | EventCategoryMouseButton; }
+    virtual int getCategoryFlags() const override { return EventCategoryInput | EventCategoryMouse | EventCategoryMouseButton; }
 
 private:
     int m_Button;
@@ -76,13 +76,13 @@ public:
     {
     }
 
-    int GetMouseButton() const { return m_Button; }
+    int getMouseButton() const { return m_Button; }
 
-    static EventType    GetStaticType() { return EventType::MouseButtonReleased; }
-    virtual EventType   GetEventType() const override { return GetStaticType(); }
-    virtual const char* GetName() const override { return "MouseButtonReleased"; }
+    static EventType    getStaticType() { return EventType::MouseButtonReleased; }
+    virtual EventType   getEventType() const override { return getStaticType(); }
+    virtual const char* getName() const override { return "MouseButtonReleased"; }
 
-    virtual int GetCategoryFlags() const override { return EventCategoryInput | EventCategoryMouse | EventCategoryMouseButton; }
+    virtual int getCategoryFlags() const override { return EventCategoryInput | EventCategoryMouse | EventCategoryMouseButton; }
 
 private:
     int m_Button;

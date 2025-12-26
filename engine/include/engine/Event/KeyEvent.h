@@ -9,45 +9,46 @@ class KeyPressedEvent : public Event
 {
 public:
     KeyPressedEvent(int keyCode, bool repeat = false)
-        : m_KeyCode(keyCode)
-        , m_Repeat(repeat)
+        : m_keyCode(keyCode)
+        , m_repeat(repeat)
     {
     }
 
-    int  GetKeyCode() const { return m_KeyCode; }
-    bool IsRepeat() const { return m_Repeat; }
+    int  GetKeyCode() const { return m_keyCode; }
+    bool IsRepeat() const { return m_repeat; }
 
-    static EventType GetStaticType() { return EventType::KeyReleased; }
-    EventType        GetEventType() const override { return EventType::KeyPressed; }
-    const char*      GetName() const override { return "KeyPressed"; }
-    int              GetCategoryFlags() const override { return EventCategoryInput | EventCategoryKeyboard; }
+    static EventType getStaticType() { return EventType::KeyPressed; }
+    EventType        getEventType() const override { return EventType::KeyPressed; }
+    const char*      getName() const override { return "KeyPressed"; }
+
+    int getCategoryFlags() const override { return EventCategoryInput | EventCategoryKeyboard; }
 
 private:
-    int  m_KeyCode;
-    bool m_Repeat;
+    int  m_keyCode;
+    bool m_repeat;
 };
 
 class KeyReleasedEvent : public Event
 {
 public:
     KeyReleasedEvent(int keyCode, bool repeat = false)
-        : m_KeyCode(keyCode)
-        , m_Repeat(repeat)
+        : m_keyCode(keyCode)
+        , m_repeat(repeat)
     {
     }
 
-    int  GetKeyCode() const { return m_KeyCode; }
-    bool IsRepeat() const { return m_Repeat; }
+    int  getKeyCode() const { return m_keyCode; }
+    bool isRepeat() const { return m_repeat; }
 
-    static EventType GetStaticType() { return EventType::KeyReleased; }
-    EventType        GetEventType() const override { return EventType::KeyReleased; }
-    const char*      GetName() const override { return "KeyReleased"; }
+    static EventType getStaticType() { return EventType::KeyReleased; }
+    EventType        getEventType() const override { return EventType::KeyReleased; }
+    const char*      getName() const override { return "KeyReleased"; }
 
-    int GetCategoryFlags() const override { return EventCategoryInput | EventCategoryKeyboard; }
+    int getCategoryFlags() const override { return EventCategoryInput | EventCategoryKeyboard; }
 
 private:
-    int  m_KeyCode;
-    bool m_Repeat;
+    int  m_keyCode;
+    bool m_repeat;
 };
 
 } // namespace Engine

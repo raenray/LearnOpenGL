@@ -2,6 +2,8 @@ add_library(engine STATIC)
 
 target_sources(engine PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Core/Application.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Core/Window.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Core/Log.cpp
 
 )
 
@@ -15,6 +17,8 @@ target_link_libraries(engine PUBLIC
     glm
     stb
     imgui
+    EnTT::EnTT
+    spdlog::spdlog
 )
 
 target_compile_definitions(engine PUBLIC

@@ -12,22 +12,22 @@ class WindowResizeEvent : public Event
 {
 public:
     WindowResizeEvent(unsigned int width, unsigned int height)
-        : m_Width(width)
-        , m_Height(height)
+        : m_width(width)
+        , m_height(height)
     {
     }
 
-    unsigned int GetWidth() const { return m_Width; }
-    unsigned int GetHeight() const { return m_Height; }
+    unsigned int getWidth() const { return m_width; }
+    unsigned int getHeight() const { return m_height; }
 
-    static EventType    GetStaticType() { return EventType::WindowResize; }
-    virtual EventType   GetEventType() const override { return GetStaticType(); }
-    virtual const char* GetName() const override { return "WindowResize"; }
+    static EventType    getStaticType() { return EventType::WindowResize; }
+    virtual EventType   getEventType() const override { return getStaticType(); }
+    virtual const char* getName() const override { return "WindowResize"; }
 
-    virtual int GetCategoryFlags() const override { return EventCategoryApplication; }
+    virtual int getCategoryFlags() const override { return EventCategoryApplication; }
 
 private:
-    unsigned int m_Width, m_Height;
+    unsigned int m_width, m_height;
 };
 
 class WindowCloseEvent : public Event
@@ -35,11 +35,11 @@ class WindowCloseEvent : public Event
 public:
     WindowCloseEvent() = default;
 
-    static EventType    GetStaticType() { return EventType::WindowClose; }
-    virtual EventType   GetEventType() const override { return GetStaticType(); }
-    virtual const char* GetName() const override { return "WindowClose"; }
+    static EventType    getStaticType() { return EventType::WindowClose; }
+    virtual EventType   getEventType() const override { return getStaticType(); }
+    virtual const char* getName() const override { return "WindowClose"; }
 
-    virtual int GetCategoryFlags() const override { return EventCategoryApplication; }
+    virtual int getCategoryFlags() const override { return EventCategoryApplication; }
 };
 
 } // namespace Engine

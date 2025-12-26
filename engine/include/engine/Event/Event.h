@@ -29,13 +29,36 @@ enum EventCategory
 class Event
 {
 public:
-    bool Handled = false;
+    bool m_handled = false;
 
-    virtual EventType   GetEventType() const     = 0;
-    virtual const char* GetName() const          = 0;
-    virtual int         GetCategoryFlags() const = 0;
+    virtual EventType   getEventType() const     = 0;
+    virtual const char* getName() const          = 0;
+    virtual int         getCategoryFlags() const = 0;
 
-    bool IsInCategory(EventCategory category) { return GetCategoryFlags() & category; }
+    bool isInCategory(EventCategory category) { return getCategoryFlags() & category; }
+};
+
+class EventDispatcher
+{
+public:
+    EventDispatcher(Event& event)
+        : m_event(event)
+    {
+    }
+
+    template <typename T, typename F> bool dispatch(const F& func)
+    {
+        if (m_event.getEventType() == T::getStaticType())
+        {
+            m_event.m_handled = func(static_cast<T&>(m_event));
+
+            return m_event.m_handled;
+        }
+        return false;
+    }
+
+private:
+    Event& m_event;
 };
 
 } // namespace Engine
